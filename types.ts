@@ -27,7 +27,12 @@ export interface SevenTvEmote extends Emote {
 }
 
 
+export interface TwitchEmoteTags {
+  [emoteId: string]: [string]
+}
+
+
 export interface ChatFragment {
   text: string;
-  emote: Emote;
+  emote?: Emote;
 }
