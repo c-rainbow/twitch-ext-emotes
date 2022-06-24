@@ -61,7 +61,6 @@ export class EmoteManager {
     const bttvEmotes = await this._fetcher.fetchBttvEmotes(channelId);
     const ffzEmotes = await this._fetcher.fetchFfzEmotes(channelId);
     const sevenTvEmotes = await this._fetcher.fetch7tvEmotes(channelId);
-    console.log('test')
 
     bttvEmotes.forEach(emote => {
       emoteMap.set(emote.text, emote);

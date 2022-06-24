@@ -1,11 +1,10 @@
 {
   "name": "twitch-ext-emotes",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "index.ts",
   "repository": "https://github.com/c-rainbow/twitch-ext-emotes.git",
   "author": "Rainbow",
   "license": "MIT",
-  "type": "module",
   "dependencies": {
     "axios": "^0.27.2"
   }
