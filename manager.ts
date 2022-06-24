@@ -2,26 +2,22 @@ import { Emote } from "./types";
 import { EmoteFetcher } from "./fetcher";
 
 
-
-
 export class EmoteManager {
   private _fetcher: EmoteFetcher;
 
   // For now, use one repository for all sources of emotes. This design decision may change later.
   private _globalEmotes: Map<string, Emote>;  // emote name to emote object.
   private _channelEmotes: Map<string, Map<string, Emote>>;  // Numeric channel ID to emotes
-  private _isGlobalEmotesPopulated: boolean;
 
   constructor() {
     this._fetcher = new EmoteFetcher();
     this._globalEmotes = new Map<string, Emote>();
     this._channelEmotes = new Map<string, Map<string, Emote>>();
-    this._isGlobalEmotesPopulated = false;
   }
 
   async getEmote(channelId: string, word: string): Promise<Emote | undefined> {
     // First, check for the global emote.
-    if (!this._isGlobalEmotesPopulated) {
+    if (!this._isPopulatedGlobal()) {
       await this._populateGlobalEmotes();
     }
     if (this._globalEmotes.has(word)) {
@@ -36,10 +32,9 @@ export class EmoteManager {
   }
 
   private async _populateGlobalEmotes() {
-    if (this._isGlobalEmotesPopulated) {
+    if (this._isPopulatedGlobal()) {
       return;
     }
-    this._isGlobalEmotesPopulated = true;
 
     const bttvGlobalEmotes = await this._fetcher.fetchBttvGlobalEmotes();
     const ffzGlobalEmotes = await this._fetcher.fetchFfzGlobalEmotes();
@@ -82,5 +77,10 @@ export class EmoteManager {
   private _isPopulated(channelId: string): boolean {
     // TODO: add expiration time
     return this._channelEmotes.has(channelId);
+  }
+
+  private _isPopulatedGlobal(): boolean {
+    // TODO: add expiration time
+    return this._globalEmotes.size > 0;
   }
 }
