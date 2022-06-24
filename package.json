@@ -1,6 +1,6 @@
 {
   "name": "twitch-emotes",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.ts",
   "repository": "https://github.com/c-rainbow/twitch-emotes.git",
   "author": "Rainbow",
