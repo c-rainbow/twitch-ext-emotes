@@ -1,8 +1,8 @@
 {
-  "name": "twitch-emotes",
-  "version": "1.0.1",
+  "name": "twitch-ext-emotes",
+  "version": "1.0.2",
   "main": "index.ts",
-  "repository": "https://github.com/c-rainbow/twitch-emotes.git",
+  "repository": "https://github.com/c-rainbow/twitch-ext-emotes.git",
   "author": "Rainbow",
   "license": "MIT",
   "type": "module",
