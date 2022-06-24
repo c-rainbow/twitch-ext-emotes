@@ -101,7 +101,7 @@ export class EmoteFetcher {
     return response.data.map(apiEmote => convertToBttvEmote(apiEmote));
   }
 
-  async fetchBttvChannelEmotes(channelId: string): Promise<BttvEmote[]> {
+  async fetchBttvEmotes(channelId: string): Promise<BttvEmote[]> {
     const response = await this._client.get<BttvApiChannelEmoteResponse>(
         `https://api.betterttv.net/3/cached/users/twitch/${channelId}`);
     
@@ -123,7 +123,7 @@ export class EmoteFetcher {
     return response.data.set.emoticons.map(apiEmote => convertToFfzEmote(apiEmote));
   }
 
-  async fetchFfzChannelEmotes(channelId: string): Promise<FfzEmote[]> {
+  async fetchFfzEmotes(channelId: string): Promise<FfzEmote[]> {
     const response = await this._client.get<FfzApiRoomEmotesResponse>(
         `https://api.frankerfacez.com/v1/room/id/${channelId}`);
     
@@ -144,16 +144,8 @@ export class EmoteFetcher {
     return response.data.map(apiEmote => convertTo7tvEmote(apiEmote));
   }
 
-  async fetch7tvChannelEmotes(channelId: string): Promise<SevenTvEmote[]> {
+  async fetch7tvEmotes(channelId: string): Promise<SevenTvEmote[]> {
     const response = await this._client.get<SevenTvApiEmote[]>(`https://api.7tv.app/v2/users/${channelId}/emotes`);
     return response.data.map(apiEmote => convertTo7tvEmote(apiEmote));
   }
 }
-
-const fetcher = new EmoteFetcher();
-//await fetcher.fetchBttvGlobalEmotes();
-//await fetcher.fetchBttvChannelEmotes('id');
-//await fetcher.fetchFfzGlobalEmotes();
-//await fetcher.fetchFfzChannelEmotes('id');
-//await fetcher.fetch7tvGlobalEmotes();
-//await fetcher.fetch7tvChannelEmotes('id');
